@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>switch</title>
+	</head>
+	<body>
+		<p id="day">今天是：<span></span></p>
+		<p class="test">猜数字游戏</p>
+		<input type="text"  />
+		<div id="text"></div>
+	<script type="text/javascript">
+		window.onload = function(){
+			function $(name){//封装选择器
+				return document.querySelector(name);
+			}
+			$("body").onclick = function(){
+				var _name = document.activeElement.tagName;  //返回当前获取焦点的元素
+				$(".test").innerHTML = _name;
+			}
+			//判断条件比较多时可用switch
+			//switch 语句基于不同的条件执行不同的动作
+			var d =new Date().getDay();
+			switch(d){//d是一个变量值
+				case 1
+					//执行代码块1
+					$("#day>span").innerText = "星期一";
+					break;//阻止代码自动向下一个case运行
+				case 2:
+					//执行代码块2
+					$("#day>span").innerText = "星期二";
+					break;
+				case 3:
+					//执行代码块2
+					$("#day>span").innerText = "星期三";
+					break;
+				case 4:
+					//执行代码块2
+					$("#day>span").innerText = "星期四";
+					break;
+				case 5:
+					//执行代码块2
+					$("#day>span").innerText = "星期五";
+					break;
+				default:
+					//其他条件都没满足时执行这的代码块；
+					$("#day>span").innerText = "周末";
+			}
+			var n = 1;
+			// while(i<5){
+			// 	//需要执行的代码
+			// };
+			var random =parseInt(Math.random()*100);//谜底数
+			var i = 1;//限制次数  最大次数5次
+			console.log(random);
+			// oninput
+			var flag = true;//不限制次数
+			$("input").onblur = function(){
+			//1、限制次数
+			// 	while( i<=5 ){
+			// 		var val = $("input").value;
+			// 		if(val<random){
+			// 			$("#text").innerText = "猜小了!还有"+(5-i)+"次机会";
+			// 			i++;
+			// 			break;
+			// 		}else if(val>random){
+			// 			$("#text").innerText = "猜大了!还有"+(5-i)+"次机会";
+			// 			i++;
+			// 			break;
+			// 		}else{
+			// 			$("#text").innerText = "恭喜你！猜对了！";
+			// 			i++;
+			// 			break;
+			// 		}
+					
+			// 	};
+			// 	if(i>5){
+			// 		$("#text").innerText = "游戏结束了";
+			// 	}
+			//1、不限制次数
+				while( flag ){
+					var val = $("input").value;
+					if(val<random){
+						$("#text").innerText = "猜小了!";
+						break;
+					}else if(val>random){
+						$("#text").innerText = "猜大了!";
+						break;
+					}else{
+						$("#text").innerText = "恭喜你！猜对了！";
+						flag = false;
+						break;
+					}
+				};
+				if(!flag){
+					$("#text").innerText = "恭喜你！猜对了,游戏结束了";
+				}
+			}
+		};
+	</script>
+</html>
